@@ -11,9 +11,9 @@ import android.view.SurfaceView
 
 class MySurfaceView(context: Context?, attrs: AttributeSet?) : SurfaceView(context, attrs),
     SurfaceHolder.Callback{
-    lateinit var surfaceHolder: SurfaceHolder
-    lateinit var BG: Bitmap
-    lateinit var SuperMan:Bitmap
+    var surfaceHolder: SurfaceHolder
+    var BG: Bitmap
+    var SuperMan:Bitmap
     init {
         surfaceHolder = getHolder()
         BG = BitmapFactory.decodeResource(getResources(), R.drawable.back)
