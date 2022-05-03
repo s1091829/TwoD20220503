@@ -1,5 +1,6 @@
 package tw.edu.pu.csim.s1091829.twod
 
+import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnStart.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
+                binding.mysv.Score = 0
                 job = GlobalScope.launch(Dispatchers.Main) {
                     while(secondsLeft > 0) {
                         secondsLeft--
@@ -33,6 +35,10 @@ class MainActivity : AppCompatActivity() {
                         binding.btnStart.isEnabled = false
                         binding.btnStop.isEnabled = true
                         delay(25)
+
+                        var canvas: Canvas = binding.mysv.surfaceHolder.lockCanvas()
+                            binding.mysv.drawSomething(canvas)
+                        binding.mysv.surfaceHolder.unlockCanvasAndPost(canvas)
                     }
                     secondsLeft = 1000
                     binding.btnStart.isEnabled = true
